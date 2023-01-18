@@ -33,3 +33,59 @@ vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries)
                         
     return queries;        
 }
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
+
+    vector<string> first_multiple_input = split(rtrim(first_multiple_input_temp));
+
+    int n = stoi(first_multiple_input[0]);
+
+    int k = stoi(first_multiple_input[1]);
+
+    int q = stoi(first_multiple_input[2]);
+
+    string a_temp_temp;
+    getline(cin, a_temp_temp);
+
+    vector<string> a_temp = split(rtrim(a_temp_temp));
+
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++) {
+        int a_item = stoi(a_temp[i]);
+
+        a[i] = a_item;
+    }
+
+    vector<int> queries(q);
+
+    for (int i = 0; i < q; i++) {
+        string queries_item_temp;
+        getline(cin, queries_item_temp);
+
+        int queries_item = stoi(ltrim(rtrim(queries_item_temp)));
+
+        queries[i] = queries_item;
+    }
+
+    vector<int> result = circularArrayRotation(a, k, queries);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        fout << result[i];
+
+        if (i != result.size() - 1) {
+            fout << "\n";
+        }
+    }
+
+    fout << "\n";
+
+    fout.close();
+
+    return 0;
+}
