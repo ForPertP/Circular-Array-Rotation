@@ -18,20 +18,20 @@ vector<string> split(const string &);
 
 vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries)
 {
-    int n = a.size();
-    vector<int> result(n);
+    vector<int> temp(a.size());
+    vector<int> result(queries.size());
     
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < a.size(); ++i)
     {
-        result[(i+k) % n] = a[i];
+        temp[(i+k) % a.size()] = a[i];
     }
     
     for (int i = 0; i < queries.size(); ++i)
     {
-        queries[i] = result[queries[i]];
+        result[i] = temp[queries[i]];
     }    
                         
-    return queries;        
+    return result;        
 }
 
 int main()
@@ -88,4 +88,43 @@ int main()
     fout.close();
 
     return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
+
+vector<string> split(const string &str) {
+    vector<string> tokens;
+
+    string::size_type start = 0;
+    string::size_type end = 0;
+
+    while ((end = str.find(" ", start)) != string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+
+    return tokens;
 }
