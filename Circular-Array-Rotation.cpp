@@ -18,8 +18,8 @@ vector<string> split(const string &);
 
 vector<int> circularArrayRotation(vector<int> a, int k, vector<int> queries)
 {
-    vector<int> temp(a.size());
     vector<int> result(queries.size());
+    vector<int> temp(a.size());
     
     for (int i = 0; i < a.size(); ++i)
     {
